@@ -90,7 +90,9 @@ class IssuesController extends BugCakeAppController {
         if ($this->Session->read('Auth.User.username') != null || $this->Cookie->read('User.username') != null) {
             if ($this->request->is('post')) {
                 $this->Issue->create();
-                $this->Issue->set("author", $this->Cookie->read('User.username'));
+                $author = $this->Session->read('Auth.User.username');
+                if ($author == null) {$author = $this->Cookie->read('User.username');}
+                $this->Issue->set("author", $author);
                 $this->Issue->set("state", 0);
                 //var_dump($this->Issue);
                 if ($this->Issue->save($this->request->data)) {
