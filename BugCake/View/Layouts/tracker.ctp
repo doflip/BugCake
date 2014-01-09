@@ -26,16 +26,35 @@
 
       <div class="ui menu">
 
-        <?php echo $this->Html->link('<i class="warning icon"></i> Create an issue', array('action' => 'add'), array('class' => 'active green item', 'escape' => false)); ?>
-        <?php echo $this->Html->link('<i class="bug icon"></i> All', array('action' => 'index'), array('class' => 'active purple item', 'escape' => false)); ?>
-        <?php echo $this->Html->link('<i class="empty checkbox icon"></i> Open', array('action' => 'index', 0), array('class' => 'active red item', 'escape' => false)); ?>
-        <?php echo $this->Html->link('<i class="checked checkbox icon"></i> Close', array('action' => 'index', 1), array('class' => 'active blue item', 'escape' => false)); ?>
-        <?php echo $this->Html->link('<i class="search icon"></i> Search', array('action' => 'search'), array('class' => 'active teal item', 'escape' => false)); ?>
+        <?php echo $this->Html->link('<i class="warning icon"></i> Create an issue', array('controller'=>'issues', 'action' => 'add'), array('class' => 'active green item', 'escape' => false)); ?>
+        <?php echo $this->Html->link('<i class="bug icon"></i> All', array('controller'=>'issues', 'action' => 'index'), array('class' => 'active purple item', 'escape' => false)); ?>
+        <?php echo $this->Html->link('<i class="empty checkbox icon"></i> Open', array('controller'=>'issues', 'action' => 'index', 0), array('class' => 'active red item', 'escape' => false)); ?>
+        <?php echo $this->Html->link('<i class="checked checkbox icon"></i> Close', array('controller'=>'issues', 'action' => 'index', 1), array('class' => 'active blue item', 'escape' => false)); ?>
+        <?php echo $this->Html->link('<i class="search icon"></i> Search', array('controller'=>'issues', 'action' => 'search'), array('class' => 'active teal item', 'escape' => false)); ?>
 
+        <div class="right menu">
+            <div class="ui dropdown item">
+              User actions <i class="dropdown icon"></i>
+              <div class="menu">
+                <?php echo $this->Html->link('<i class="add icon"></i> Register', array('controller'=>'users', 'action' => 'add'), array('class' => 'item', 'escape' => false)); ?>
+                <?php echo $this->Html->link('<i class="unlock icon"></i> Login', array('controller'=>'users', 'action' => 'login'), array('class' => 'item', 'escape' => false)); ?>
+                <?php echo $this->Html->link('<i class="off icon"></i> Logout', array('controller'=>'users', 'action' => 'logout'), array('class' => 'item', 'escape' => false)); ?>
+
+              </div>
+            </div>  
+        </div>
+      
       </div>
 
       <?php echo $this->Session->flash(); ?>
       <?php echo $this->fetch('content'); ?>
+      <script>
+            $('.ui.dropdown')
+              .dropdown({
+                on: 'hover'
+                }) 
+            ;
+      </script>
 </body>
 
 </html>

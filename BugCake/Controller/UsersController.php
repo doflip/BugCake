@@ -21,6 +21,7 @@ class UsersController extends BugCakeAppController {
 
 
     public function add() {
+        $this->layout = 'tracker';
         if ($this->request->is('post')) {
             $username = $this->request->data['User']['username'];
             $email = $this->request->data['User']['email'];
@@ -58,6 +59,7 @@ class UsersController extends BugCakeAppController {
 
 
     public function login() {
+        $this->layout = 'tracker';
         if ($this->request->is('post')) {
             if ($this->Auth->login()) {
                 $this->Cookie->write('User.name', $this->Session->read('Auth.User.username'));
