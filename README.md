@@ -19,10 +19,14 @@ CakePlugin::loadAll();
 Then, access the plugin controllers as in the example:
 http://host/bug_cake/issues
 
+###Standalone deployment Instructions
+Install the latest version of the CakePHP framework and correctly configure the database (see the installation instructions below for more detailed information).
+Into the folder `APP/Plugin`, clone the BugCake plugin repository. Then practically you have successfully deployed a standalone BugCake web application. You may access your bug tracker via `http://yourhost/bug_cake`.
+
 
 ### Installation
 It is highly extendable, like any CakePHP web app. By default it makes use of the MySQL database, which you have to correctly set when installing the web app:
-Rename app/Config/database.php.default to app/Config/database.php and change the following sniper, according to your database server credentials:
+Rename `app/Config/database.php.default` to `app/Config/database.php` and change the following sniper, according to your database server credentials:
 
 ```php
 public $default = array(
@@ -67,6 +71,7 @@ UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8_unicode_ci AUTO_INCREMENT=1 ;
 ```
 
-In the app/Controller/UsersController.php file, we have a company-inside limitation for users' registration (we require LubbleUp corporate e-mail accounts), which is be default commented out. Though, we recommend to use it so that is suits your needs if you use it in an enterprise-level environment.
+
+In the `Controller/UsersController.php` file, we have a company-inside limitation for users' registration (we require LubbleUp corporate e-mail accounts), which is be default commented out. Though, we recommend to use it so that is suits your needs if you use it in an enterprise-level environment.
 
 Contact: talk2us@lubbleup.com
