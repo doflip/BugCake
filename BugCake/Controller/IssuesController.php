@@ -160,7 +160,9 @@ class IssuesController extends BugCakeAppController {
             $this->Issue->save($form);   
             $this->Issue->create();
             $this->Issue->set(array('comment_id'=>$post_id));
-            $this->Issue->set("author", $this->Cookie->read('User.username'));
+            $author = $this->Session->read('Auth.User.username');
+            if ($author == null) {$author = $this->Cookie->read('User.username');}
+            $this->Issue->set("author", $author);
             $this->Issue->set("title", "comment");
             if ($this->Issue->save($this->request->data)) {
                 $this->Session->setFlash('Your comment has been added.', 'info');
