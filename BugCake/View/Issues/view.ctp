@@ -5,26 +5,25 @@
 
 
 Tags: 
-
-
 <?php
-if (strpos($post['Issue']['tags'], ',')) {
-  
+if (strlen($post['Issue']['tags']) > 0) {
+	if (strpos($post['Issue']['tags'], ',')) {
+		foreach(explode(',', $post['Issue']['tags']) as $tag) {
 
-foreach(explode(',', $post['Issue']['tags']) as $tag) {
-  echo '<div class="ui label">'.$tag;
-  
-  echo $this->Form->postlink('<i class="delete icon"></i>',
-                             array('action' => 'tags', $post['Issue']['id'], 'delete', $tag),
-                             array('escape'=>false));
-  echo'</div>';
-}
-} else {
-  echo '<div class="ui label">'.$post['Issue']['tags'];
-  echo $this->Form->postlink('<i class="delete icon"></i>',
-                             array('action' => 'tags', $post['Issue']['id'], 'delete', $post['Issue']['tags']),
-                             array('escape'=>false));
-  echo'</div>';
+		  echo '<div class="ui label">'.$tag;
+		  echo $this->Form->postlink('<i class="delete icon"></i>',
+		                             array('action' => 'tags', $post['Issue']['id'], 'delete', $tag),
+		                             array('escape'=>false));
+		  echo'</div>';
+		}
+	} else {
+
+	  echo '<div class="ui label">'.$post['Issue']['tags'];
+	  echo $this->Form->postlink('<i class="delete icon"></i>',
+	                             array('action' => 'tags', $post['Issue']['id'], 'delete', $post['Issue']['tags']),
+	                             array('escape'=>false));
+	  echo'</div>';
+	}
 }
 ?>
 
