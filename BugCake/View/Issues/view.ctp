@@ -4,15 +4,39 @@
 </div>
 
 
-Status: 
+Tags: 
+
+
 <?php
-if ($post['Issue']['state'] == 0) {
-  echo $this->Form->postLink("OPEN", array('action' => 'state', $post['Issue']['id']),
-                       array('class'=>'ui black label'));
-} else {
-  echo $this->Form->postLink("CLOSE", array('action' => 'state', $post['Issue']['id']),
-                       array('class'=>'ui green label'));
+if (strpos($post['Issue']['tags'], ',')) {
+  
+
+foreach(explode(',', $post['Issue']['tags']) as $tag) {
+  echo '<div class="ui label">'.$tag;
+  
+  echo $this->Form->postlink('<i class="delete icon"></i>',
+                             array('action' => 'tags', $post['Issue']['id'], 'delete', $tag),
+                             array('escape'=>false));
+  echo'</div>';
 }
+} else {
+  echo '<div class="ui label">'.$post['Issue']['tags'];
+  echo $this->Form->postlink('<i class="delete icon"></i>',
+                             array('action' => 'tags', $post['Issue']['id'], 'delete', $post['Issue']['tags']),
+                             array('escape'=>false));
+  echo'</div>';
+}
+?>
+
+<div class="ui icon input 4">
+<?php echo $this->Form->create('Issue', array('url' => array('action' => 'tags', $post['Issue']['id'], 'add')));
+echo $this->Form->input('tag', array('label' => false,
+                                        'placeholder' => 'Add tag',
+                                        'div'=>false));
+echo $this->Form->end(); ?>
+</div>
+
+<?php
 if ($post['Issue']['author'] == $this->Session->read('Auth.User.username')) {
   echo $this->Html->link("EDIT", array('action' => 'edit', $post['Issue']['id']), array('class'=>'ui teal label'));
   echo $this->Form->postLink("DELETE", array('action' => 'delete', $post['Issue']['id']),
@@ -55,3 +79,4 @@ echo $this->Form->postLink("DELETE", array('action' => 'delete', $comment['Issue
     <input type="submit" value="Save Issue" class="ui green submit button" />
 </div>
 <?php echo $this->Form->end(); ?>
+<script>$('.ui.selection.dropdown').dropdown();</script>

@@ -14,13 +14,8 @@
         </tr>
       </thead>
       <tbody>
-            <?php foreach ($posts as $post):
-            if ($post['Issue']['state'] == 0) {
-                echo '<tr class="negative">';
-              } else {
-                echo '<tr class="positive">';
-              }
-            ?>
+            <?php foreach ($posts as $post): ?>
+            <tr>
             <td><a href="<?php echo $this->Html->url(array('action'=> 'view', $post['Issue']['id']));  ?>"><div class="small circular ui button">View</div></a></td>
             <td><?php echo h($post['Issue']['title']); ?></td>
             <td><?php echo h(substr($post['Issue']['body'], 0, 41)); ?></td>

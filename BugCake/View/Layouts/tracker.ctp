@@ -28,8 +28,8 @@
 
         <?php echo $this->Html->link('<i class="warning icon"></i> Create an issue', array('controller'=>'issues', 'action' => 'add'), array('class' => 'active green item', 'escape' => false)); ?>
         <?php echo $this->Html->link('<i class="bug icon"></i> All', array('controller'=>'issues', 'action' => 'index'), array('class' => 'active purple item', 'escape' => false)); ?>
-        <?php echo $this->Html->link('<i class="empty checkbox icon"></i> Open', array('controller'=>'issues', 'action' => 'index', 0), array('class' => 'active red item', 'escape' => false)); ?>
-        <?php echo $this->Html->link('<i class="checked checkbox icon"></i> Close', array('controller'=>'issues', 'action' => 'index', 1), array('class' => 'active blue item', 'escape' => false)); ?>
+        <?php echo $this->Html->link('<i class="empty checkbox icon"></i> Open', array('controller'=>'issues', 'action' => 'index', 'open'), array('class' => 'active red item', 'escape' => false)); ?>
+        <?php echo $this->Html->link('<i class="checked checkbox icon"></i> Close', array('controller'=>'issues', 'action' => 'index', 'close'), array('class' => 'active blue item', 'escape' => false)); ?>
         <?php echo $this->Html->link('<i class="search icon"></i> Search', array('controller'=>'issues', 'action' => 'search'), array('class' => 'active teal item', 'escape' => false)); ?>
 
         <div class="right menu">
@@ -54,6 +54,7 @@
                 on: 'hover'
                 }) 
             ;
+            
       </script>
 </body>
 
