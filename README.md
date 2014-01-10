@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `issues` (
 `comment_id` INT(11) NOT NULL,
 `author` VARCHAR(255) NOT NULL,
 `answers` INT(11) NOT NULL,
-`state` INT(11) NOT NULL,
+`tags` varchar(255) NOT NULL,
 PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
