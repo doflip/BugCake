@@ -1,8 +1,20 @@
 <div class="main container">
-    <div class="three fluid ui buttons">
+    <div class="ui three column divided grid">
+        <div class="row">
+          <div class="column">
+              <div class="ui divider"></div>
+          </div>
+          <div class="column">
+            <div class="ui 3 basic fluid buttons">
         <?php echo $this->Paginator->prev('<i class="double angle left icon"></i>',array('tag' => 'div', 'escape' => false, 'class' => 'ui active button'));?>
         <?php echo '<div class="ui active button">'.$this->Paginator->counter().'</div>'; ?>
         <?php echo $this->Paginator->next('<i class="double angle right icon"></i>',array('tag' => 'div', 'escape' => false, 'class' => 'ui active button'));?>
+            </div>
+          </div>
+          <div class="column">
+              <div class="ui divider"></div>
+          </div>
+        </div>
     </div>
     <table class="ui table segment">
       <thead>
@@ -25,9 +37,21 @@
             <?php endforeach; ?>
       </tbody>
     </table>
-    <div class="three fluid ui buttons">
-        <?php echo $this->Paginator->prev('<i class="double angle left icon"></i>',array('tag' => 'div', 'escape' => false, 'class' => 'ui active button'));?>
-        <?php echo '<div class="ui active button">'.$this->Paginator->counter().'</div>'; ?>
-        <?php echo $this->Paginator->next('<i class="double angle right icon"></i>',array('tag' => 'div', 'escape' => false, 'class' => 'ui active button'));?>
-    </div>
+    <div class="ui three column divided grid">
+    <div class="row">
+      <div class="column">
+          <div class="ui divider"></div>
+      </div>
+      <div class="column">
+        <div class="ui 3 basic fluid buttons">
+    <?php echo $this->Paginator->prev('<i class="double angle left icon"></i>',array('tag' => 'div', 'escape' => false, 'class' => 'ui active button'));?>
+    <?php echo '<div class="ui active button">'.$this->Paginator->counter().'</div>'; ?>
+    <?php echo $this->Paginator->next('<i class="double angle right icon"></i>',array('tag' => 'div', 'escape' => false, 'class' => 'ui active button'));?>
+        </div>
+      </div>
+      <div class="column">
+          <div class="ui divider"></div>
+        </div>
+      </div>
+  </div>
 </div>

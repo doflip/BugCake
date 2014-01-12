@@ -61,12 +61,25 @@ echo $this->Form->postLink("DELETE", array('action' => 'delete', $comment['Issue
 } ?>
 <p><?php echo h($comment['Issue']['body']); ?></p>
 </div>
-<?php endforeach; ?>
-<?php echo $this->Paginator->prev('<i class="double angle left icon"></i>',array('tag' => 'div', 'escape' => false, 'class' => 'ui active button'));?>
-<?php echo '<div class="ui active button">'.$this->Paginator->counter().'</div>'; ?>
-<?php echo $this->Paginator->next('<i class="double angle right icon"></i>',array('tag' => 'div', 'escape' => false, 'class' => 'ui active button'));?>
 
-<div class="ui divider"></div>
+<?php endforeach; ?>
+<div class="ui three column divided grid">
+  <div class="row">
+    <div class="column">
+        <div class="ui divider"></div>
+    </div>
+    <div class="column">
+      <div class="ui 3 basic fluid buttons">
+  <?php echo $this->Paginator->prev('<i class="double angle left icon"></i>',array('tag' => 'div', 'escape' => false, 'class' => 'ui active button'));?>
+  <?php echo '<div class="ui active button">'.$this->Paginator->counter().'</div>'; ?>
+  <?php echo $this->Paginator->next('<i class="double angle right icon"></i>',array('tag' => 'div', 'escape' => false, 'class' => 'ui active button'));?>
+      </div>
+    </div>
+    <div class="column">
+        <div class="ui divider"></div>
+      </div>
+    </div>
+</div>
 
 <h4>Post a Comment</h4>
 <?php echo $this->Form->create('Issue', array('url' => array('action'=> 'comment', $post['Issue']['id']), 'novalidate' => true)); ?>
