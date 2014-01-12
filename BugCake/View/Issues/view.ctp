@@ -46,7 +46,7 @@ if ($post['Issue']['author'] == $this->Session->read('Auth.User.username')) {
 <p><?php echo h($post['Issue']['body']); ?></p>
 
 </div>
-
+<div class="ui divider"></div>
 
 <?php foreach ($comments as $comment): ?>
 <div class="ui raised segment">
@@ -62,6 +62,9 @@ echo $this->Form->postLink("DELETE", array('action' => 'delete', $comment['Issue
 <p><?php echo h($comment['Issue']['body']); ?></p>
 </div>
 <?php endforeach; ?>
+<?php echo $this->Paginator->prev('<i class="double angle left icon"></i>',array('tag' => 'div', 'escape' => false, 'class' => 'ui active button'));?>
+<?php echo '<div class="ui active button">'.$this->Paginator->counter().'</div>'; ?>
+<?php echo $this->Paginator->next('<i class="double angle right icon"></i>',array('tag' => 'div', 'escape' => false, 'class' => 'ui active button'));?>
 
 <div class="ui divider"></div>
 

@@ -82,9 +82,12 @@ class IssuesController extends BugCakeAppController {
         $this->layout = 'tracker';
 
         $post = $this->Issue->findById($id);
-        $comments = $this->Issue->findAllByComment_id($id);
-        
         if (!$post) { $this->redirect(array('action' => 'index'));}
+        
+        $this->Paginator->settings = array('conditions' => array('Issue.comment_id =' => $id),
+                                               'limit' => 6, 'order' => array('Issue.id' => 'desc'));
+        $comments = $this->Paginator->paginate('Issue');
+        
         
         $this->set('post', $post);
         $this->set('comments', $comments);
