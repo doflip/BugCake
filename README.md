@@ -1,8 +1,7 @@
 BugCake Plugin for CakePHP
 =======
 
-BugCake is an open source minimalistic bug tracker, developed in the CakePHP framework.
-This is the plugin of the master branch. 
+BugCake is an open source minimalistic bug/issue tracking plugin, developed using the CakePHP framework. Though it was developed as a CakePHP plugin, it can also be transformed and deployed with ease as a standalone bug/issue tracker.
 
 ### Pictures
 For more pictures take a look [here](https://github.com/lubbleup/BugCake/wiki/Pictures)
@@ -19,7 +18,7 @@ You can do that just by adding
 CakePlugin::loadAll();
 ```
 Then, access the plugin controllers as in the example:
-http://host/bug_cake/issues
+`http://host/bug_cake/issues`
 
 ###Standalone deployment Instructions
 Install the latest version of the CakePHP framework and correctly configure the database (see the installation instructions below for more detailed information).
@@ -28,7 +27,7 @@ Into the folder `APP/Plugin`, clone the BugCake plugin repository. Then practica
 
 ### Installation
 It is highly extendable, like any CakePHP web app. By default it makes use of the MySQL database, which you have to correctly set when installing the web app:
-Rename `app/Config/database.php.default` to `app/Config/database.php` and change the following sniper, according to your database server credentials:
+Rename `app/Config/database.php.default` to `app/Config/database.php` and change the following snipet, according to your database server credentials:
 
 ```php
 public $default = array(
@@ -74,6 +73,7 @@ UNIQUE KEY `username` (`username`)
 ```
 
 
-In the `Controller/UsersController.php` file, we have a company-inside limitation for users' registration (we require LubbleUp corporate e-mail accounts), which is be default commented out. Though, we recommend to use it so that is suits your needs if you use it in an enterprise-level environment.
+In the `Controller/UsersController.php` file, there is a company-inside limitation for users' registration (by default, we require a LubbleUp corporal e-mail account), which is (by default) commented out. We recommend to uncomment these lines and fix them to suit your needs, especially if you do use the bug/issue tracking plugin in an enterprise environment.
 
+Developed from LubbleUp in-house software dev team with love.
 Contact: talk2us@lubbleup.com
