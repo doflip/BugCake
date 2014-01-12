@@ -9,7 +9,7 @@ For more pictures take a look [here](https://github.com/lubbleup/BugCake/wiki/Pi
 
 
 [![Build Status](https://travis-ci.org/lubbleup/BugCake.png?branch=master)](https://travis-ci.org/lubbleup/BugCake)
-![Picture 1](https://dl-web.dropbox.com/get/Photos/bug1.png?w=AACaIDAZJ2ER6NMYl_IRJtkmldC9HZ1JvuqVHx8sE_wnVw&_subject_uid=162584646)
+![Picture 1](https://dl.dropboxusercontent.com/u/162584646/bug1.png)
 
 
 ###Instructions
