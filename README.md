@@ -12,6 +12,8 @@ For more pictures take a look [here](https://github.com/lubbleup/BugCake/wiki/Pi
 
 
 ###Instructions
+Create a folder named BugCake(app/Plugin)
+and move in this folder the BugCake files
 Do not forget to load the plugin in your bootstrap.php file.
 You can do that just by adding 
 ```php
