@@ -45,9 +45,18 @@
         </div>
       
       </div>
-
+     
       <?php echo $this->Session->flash(); ?>
       <?php echo $this->fetch('content'); ?>
+      
+        <!-- <h6 class="ui right aligned tiny header">
+            <p>Made with  <i class="black heart icon"></i>by lubbleup </p>
+        </h6> -->
+        <div class="ui divided horizontal footer link list right aligned page grid">
+            <div class="item">Made with  <i class="black heart icon"></i>by <a href="http://lubbleup.com/">LubbleUp</a> </div>
+            <a class="item" href="https://github.com/lubbleup/BugCake">Github</a>
+        </div>
+        
       <script>
             $('.ui.dropdown')
               .dropdown({
