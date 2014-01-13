@@ -22,8 +22,10 @@ before_script:
      'persistent' => false,
    );
    }" > ../cakephp/app/Config/database.php
+  - cd ..
+   
  
 script:
-  - ./../lib/Cake/Console/cake test AssetCompress AllTests --stderr
+  - ./lib/Cake/Console/cake test AssetCompress AllTests --stderr
 notifications:
   email: false
