@@ -6,8 +6,6 @@ BugCake is an open source minimalistic bug/issue tracking plugin, developed usin
 ### Pictures
 For more pictures take a look [here](https://github.com/lubbleup/BugCake/wiki/Pictures)
 
-
-[![Build Status](https://travis-ci.org/lubbleup/BugCake.png?branch=master)](https://travis-ci.org/lubbleup/BugCake)
 ![Picture 1](https://dl.dropboxusercontent.com/u/162584646/bug1.png)
 
 
