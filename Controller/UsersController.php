@@ -14,6 +14,14 @@ class UsersController extends BugCakeAppController {
         $this->Cookie->secure = false;  // i.e. only sent if using secure HTTPS
         $this->Cookie->key = 'qSI232qs*&sfytf65r6fc9-+!@#HKis~#^';
         $this->Cookie->httpOnly = false;
+
+        if ($this->Session->read('Auth.User.username') != null || $this->Cookie->read('User.username') != null) {
+            $user = $this->Session->read('Auth.User.username');
+            if ($user == null) {$user = $this->Cookie->read('User.username');}
+            $this->set('user', $user);
+        } else {
+            $this->set('user', 'User Actions');
+        }
     }
     
     public function index() {
@@ -64,18 +72,19 @@ class UsersController extends BugCakeAppController {
             if ($this->Auth->login()) {
                 $this->Cookie->write('User.name', $this->Session->read('Auth.User.username'));
                 $this->Cookie->write('User.role', $this->Session->read('Auth.User.role'));
-                $this->Session->setFlash(__('Welcome '.$this->Session->read('Auth.User.username')));
+                $this->Session->setFlash(__('Welcome '.$this->Session->read('Auth.User.username')), 'info');
                 $this->redirect(array('action' => 'login'));
             }
-            $this->Session->setFlash(__('Invalid username or password, try again'));
+            $this->Session->setFlash(__('Invalid username or password, try again'), 'info');
         }
     }
     
 
     public function logout() {
         $this->Cookie->destroy();
-        $this->Session->setFlash(__('Logged out successfully'));
-        $this->redirect($this->Auth->logout());
+        $this->Session->setFlash(__('Logged out successfully'), 'info');
+        $this->Auth->logout();
+        $this->redirect(array('action' => 'login'));
         
     }
 }

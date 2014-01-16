@@ -13,6 +13,14 @@ class IssuesController extends BugCakeAppController {
         $this->Cookie->secure = false;  // i.e. only sent if using secure HTTPS
         $this->Cookie->key = 'qSI232qs*&sfytf65r6fc9-+!@#HKis~#^';
         $this->Cookie->httpOnly = false;
+
+        if ($this->Session->read('Auth.User.username') != null || $this->Cookie->read('User.username') != null) {
+            $user = $this->Session->read('Auth.User.username');
+            if ($user == null) {$user = $this->Cookie->read('User.username');}
+            $this->set('user', $user);
+        } else {
+            $this->redirect(array('action' => 'login'));
+        }
     }
     
     public function tags($id=null, $action=null, $data=null) {
@@ -41,29 +49,24 @@ class IssuesController extends BugCakeAppController {
     
     public function search() {
         $this->layout = 'tracker';
-        if ($this->Session->read('Auth.User.username') != null || $this->Cookie->read('User.username') != null) {
-            if ($this->request->is('post')) {
-                $keywords = $this->request['data']['Issue']['search'];
-                $options = array(
-                'conditions' => array(
-                    'OR' => array(
-                        'Issue.body LIKE' => '%'. $keywords . '%',
-                        'Issue.title LIKE' => '%'. $keywords . '%'
-                        )
+        if ($this->request->is('post')) {
+            $keywords = $this->request['data']['Issue']['search'];
+            $options = array(
+            'conditions' => array(
+                'OR' => array(
+                    'Issue.body LIKE' => '%'. $keywords . '%',
+                    'Issue.title LIKE' => '%'. $keywords . '%'
                     )
-                );
-                $this->set('posts', $this->Issue->find('all', $options));
-            }
-        } 
+                )
+            );
+            $this->set('posts', $this->Issue->find('all', $options));
+        }
     }
     
     
     public function index($tags=null) {
         $this->layout = 'tracker';
         //$this->Session->setFlash(__('Welcome back'), 'info');
-        if ($this->Session->read('Auth.User.username') != null || $this->Cookie->read('User.username') != null) {
-            ////$this->redirect(array('controller' => 'users', 'actions'=> 'login'));
-        }
         if ($tags == null) {
             $this->Paginator->settings = array('conditions' => array('Issue.comment_id =' => '0'),
                                                'limit' => 6, 'order' => array('Issue.id' => 'desc'));
@@ -97,23 +100,19 @@ class IssuesController extends BugCakeAppController {
     
     public function add() {
         $this->layout = 'tracker';
-        if ($this->Session->read('Auth.User.username') != null || $this->Cookie->read('User.username') != null) {
-            if ($this->request->is('post')) {
-                $this->Issue->create();
-                $author = $this->Session->read('Auth.User.username');
-                if ($author == null) {$author = $this->Cookie->read('User.username');}
-                $this->Issue->set("author", $author);
-                $this->Issue->set("tags", 'open');
-                //var_dump($this->Issue);
-                if ($this->Issue->save($this->request->data)) {
-                    $this->Session->setFlash(__('Your post has been saved.'), 'info');
-                    $this->redirect(array('action' => 'index'));
-                } else {
-                    $this->Session->setFlash(__('Unable to add your post.'), 'info');
-                }
+        if ($this->request->is('post')) {
+            $this->Issue->create();
+            $author = $this->Session->read('Auth.User.username');
+            if ($author == null) {$author = $this->Cookie->read('User.username');}
+            $this->Issue->set("author", $author);
+            $this->Issue->set("tags", 'open');
+            //var_dump($this->Issue);
+            if ($this->Issue->save($this->request->data)) {
+                $this->Session->setFlash(__('Your post has been saved.'), 'info');
+                $this->redirect(array('action' => 'index'));
+            } else {
+                $this->Session->setFlash(__('Unable to add your post.'), 'info');
             }
-        } else {
-            $this->redirect(array('action' => 'index'));
         }
         
     }

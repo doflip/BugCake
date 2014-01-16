@@ -26,19 +26,22 @@
 
       <div class="ui menu">
 
-        <?php echo $this->Html->link('<i class="warning icon"></i> Create an issue', array('controller'=>'issues', 'action' => 'add'), array('class' => 'active green item', 'escape' => false)); ?>
-        <?php echo $this->Html->link('<i class="bug icon"></i> All', array('controller'=>'issues', 'action' => 'index'), array('class' => 'active purple item', 'escape' => false)); ?>
-        <?php echo $this->Html->link('<i class="empty checkbox icon"></i> Open', array('controller'=>'issues', 'action' => 'index', 'open'), array('class' => 'active red item', 'escape' => false)); ?>
-        <?php echo $this->Html->link('<i class="checked checkbox icon"></i> Close', array('controller'=>'issues', 'action' => 'index', 'close'), array('class' => 'active blue item', 'escape' => false)); ?>
-        <?php echo $this->Html->link('<i class="search icon"></i> Search', array('controller'=>'issues', 'action' => 'search'), array('class' => 'active teal item', 'escape' => false)); ?>
+        <?php echo $this->Html->link('<i class="warning icon"></i> Create an issue', array('plugin' => 'bug_cake', 'controller'=>'issues', 'action' => 'add'), array('class' => 'active green item', 'escape' => false)); ?>
+        <?php echo $this->Html->link('<i class="bug icon"></i> All', array('plugin' => 'bug_cake', 'controller'=>'issues', 'action' => 'index'), array('class' => 'active purple item', 'escape' => false)); ?>
+        <?php echo $this->Html->link('<i class="empty checkbox icon"></i> Open', array('plugin' => 'bug_cake', 'controller'=>'issues', 'action' => 'index', 'open'), array('class' => 'active red item', 'escape' => false)); ?>
+        <?php echo $this->Html->link('<i class="checked checkbox icon"></i> Close', array('plugin' => 'bug_cake', 'controller'=>'issues', 'action' => 'index', 'close'), array('class' => 'active blue item', 'escape' => false)); ?>
+        <?php echo $this->Html->link('<i class="search icon"></i> Search', array('plugin' => 'bug_cake', 'controller'=>'issues', 'action' => 'search'), array('class' => 'active teal item', 'escape' => false)); ?>
 
         <div class="right menu">
             <div class="ui dropdown item">
-              User actions <i class="dropdown icon"></i>
+              <?php echo strtoupper($user); ?><i class="dropdown icon"></i>
               <div class="menu">
-                <?php echo $this->Html->link('<i class="add icon"></i> Register', array('controller'=>'users', 'action' => 'add'), array('class' => 'item', 'escape' => false)); ?>
-                <?php echo $this->Html->link('<i class="unlock icon"></i> Login', array('controller'=>'users', 'action' => 'login'), array('class' => 'item', 'escape' => false)); ?>
-                <?php echo $this->Html->link('<i class="off icon"></i> Logout', array('controller'=>'users', 'action' => 'logout'), array('class' => 'item', 'escape' => false)); ?>
+                <?php 
+                if ($user == 'User Actions') { 
+                  echo $this->Html->link('<i class="add icon"></i> Register', array('plugin' => 'bug_cake', 'controller'=>'users', 'action' => 'add'), array('class' => 'item', 'escape' => false)); 
+                } else {
+                  echo $this->Html->link('<i class="off icon"></i> Logout', array('plugin' => 'bug_cake', 'controller'=>'users', 'action' => 'logout'), array('class' => 'item', 'escape' => false)); 
+                } ?>
 
               </div>
             </div>  
