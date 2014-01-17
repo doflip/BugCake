@@ -1,8 +1,8 @@
 <?php
 class IssuesController extends BugCakeAppController {
-    public $helpers = array('Html', 'Form');
+    public $helpers = array('Html', 'Form', 'Text');
     public $uses = array('DefaultModel', 'Issue');
-    public $components = array('Paginator', 'Session', 'Cookie');
+    public $components = array('Paginator', 'Session', 'Cookie', 'RequestHandler');
     
     public function beforeFilter() {
         parent::beforeFilter();
@@ -19,7 +19,7 @@ class IssuesController extends BugCakeAppController {
             if ($user == null) {$user = $this->Cookie->read('User.username');}
             $this->set('user', $user);
         } else {
-            $this->redirect(array('action' => 'login'));
+            $this->redirect(array('controller' => 'users', 'action' => 'login'));
         }
     }
     
@@ -48,7 +48,7 @@ class IssuesController extends BugCakeAppController {
     
     
     public function search() {
-        $this->layout = 'tracker';
+
         if ($this->request->is('post')) {
             $keywords = $this->request['data']['Issue']['search'];
             $options = array(
@@ -65,8 +65,14 @@ class IssuesController extends BugCakeAppController {
     
     
     public function index($tags=null) {
-        $this->layout = 'tracker';
-        //$this->Session->setFlash(__('Welcome back'), 'info');
+        if ($this->RequestHandler->isRss() ) {
+            $posts = $this->Issue->find(
+                'all',
+                array('limit' => 20, 'order' => 'Issue.created DESC', 'conditions' => array('Issue.comment_id =' => '0'))
+            );
+
+            return $this->set(compact('posts'));
+        }
         if ($tags == null) {
             $this->Paginator->settings = array('conditions' => array('Issue.comment_id =' => '0'),
                                                'limit' => 6, 'order' => array('Issue.id' => 'desc'));
@@ -81,25 +87,19 @@ class IssuesController extends BugCakeAppController {
     }
 
     public function view($id=null) {
-        
-        $this->layout = 'tracker';
-
         $post = $this->Issue->findById($id);
         if (!$post) { $this->redirect(array('action' => 'index'));}
         
         $this->Paginator->settings = array('conditions' => array('Issue.comment_id =' => $id),
                                                'limit' => 6, 'order' => array('Issue.id' => 'desc'));
         $comments = $this->Paginator->paginate('Issue');
-        
-        
-        $this->set('post', $post);
-        $this->set('comments', $comments);
+        $this->set(compact('post', 'comments'));
         
     }
     
     
     public function add() {
-        $this->layout = 'tracker';
+        
         if ($this->request->is('post')) {
             $this->Issue->create();
             $author = $this->Session->read('Auth.User.username');
@@ -117,7 +117,7 @@ class IssuesController extends BugCakeAppController {
         
     }
     public function edit($id = null) {
-        $this->layout = 'tracker';
+        
         $post = $this->Issue->findById($id);
         if ($post['Issue']['author'] == $this->Session->read('Auth.User.username') ||
             $post['Issue']['author'] == $this->Cookie->read('User.username')) {
@@ -144,7 +144,7 @@ class IssuesController extends BugCakeAppController {
     }
     
     public function delete($id) {
-        $this->layout = 'tracker';
+        
         
         if ($this->request->is('get')) {
             $this->redirect(array('action' => 'index'));
