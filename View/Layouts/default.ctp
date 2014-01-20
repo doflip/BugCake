@@ -16,9 +16,10 @@
   
   <script src="http://code.jquery.com/jquery-2.0.3.js"></script>
   <?php
+  echo $this->Html->meta('favicon.ico', 'BugCake.favicon.ico', array('type' => 'icon'));
   echo $this->Html->meta('Issues', 'bug_cake/issues/index.rss', array('type' => 'rss'));
-  echo $this->Html->css('/bug_cake/css/semantic');
-  echo $this->Html->script('/bug_cake/js/semantic');
+  echo $this->Html->css('BugCake.semantic');
+  echo $this->Html->script('BugCake.semantic');
   ?>
   <!-- Site Properities -->
   
