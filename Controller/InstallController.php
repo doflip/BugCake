@@ -13,34 +13,36 @@ class InstallController extends BugCakeAppController {
     }
     
     public function index() {
-        $this->_step1();
+        $this->set('sqlcode', $this->sqlcode);
         
-    }
-    
-    public function _step1() {
-        $db = ConnectionManager::getDataSource('default');
-        $db->query(file_get_contents($this->sqlcode));
-        //$this->Session->setFlash('<pre>'.file_get_contents($this->sqlcode).'</pre>', 'info');
-        echo '<div class="ui segment"><div class="ui top attached label">SQL</div><pre>';
-        echo file_get_contents($this->sqlcode);
-        echo '</pre></div>';
+        if ($this->request->is('post')) {
+            $db = ConnectionManager::getDataSource('default');
+            $db->query(file_get_contents($this->sqlcode));
+            $this->redirect(array('controller' => 'install', 'action' => 'step2'));
+        }
     }
     
     public function step2() {
-        $this->loadModel('User');
-        $this->User->create();
-        $this->request->data['Install']['role'] = "user";
-        if ($this->User->save($this->request->data)) {
-            $this->Session->setFlash(__('The user has been saved'));
-            return $this->redirect(array('action' => 'index'));
+        if ($this->request->is('post')) {
+            $this->loadModel('User');
+            $this->User->create();
+            $this->request->data['User']['role'] = "admin";
+            if ($this->User->save($this->request->data)) {
+                $this->Session->setFlash(__('The user has been saved'), 'info');
+                $this->redirect(array('controller' => 'install', 'action' => 'complete'));
+            }
+            $this->Session->setFlash(__('The user could not be saved. Please, try again.'), 'warning');
         }
-        $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
         
     }
     
     public function complete() {
-        if (unlink($this->sqlcode)) {
+        if ($this->request->is('post')) {
+            if (unlink($this->sqlcode)) {
+                $this->Session->setFlash(__('Installation Completed !!! Thank you for choosing us.'), 'info');
+            }
         }
+        
     }
 }
 ?>
