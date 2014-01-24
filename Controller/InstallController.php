@@ -1,15 +1,17 @@
 <?php
 App::uses('ConnectionManager', 'Model');
+App::uses('AuthComponent', 'Controller/Component');
 class InstallController extends BugCakeAppController {
     var $useTable = false;
-    public $components = array('Session');
+    public $components = array('Session', 'Auth');
     public function beforeFilter() {
         parent::beforeFilter();
+        $this->Auth->allow('step2', 'complete', 'index');
         $this->layout = "install";
         $this->sqlcode = APP.'Plugin'.DS.'BugCake'.DS.'SQLTABLES.sql';
-        if (!file_exists($this->sqlcode)) {
-            $this->redirect(array('controller' => 'issues', 'action' => 'index'));
-        }
+        //if (!file_exists($this->sqlcode)) {
+        //    $this->redirect(array('controller' => 'issues', 'action' => 'index'));
+        //}
     }
     
     public function index() {
@@ -27,6 +29,7 @@ class InstallController extends BugCakeAppController {
             $this->loadModel('User');
             $this->User->create();
             $this->request->data['User']['role'] = "admin";
+            $this->request->data['User']['password'] = AuthComponent::password($this->request->data['User']['password']);
             if ($this->User->save($this->request->data)) {
                 $this->Session->setFlash(__('The user has been saved'), 'info');
                 $this->redirect(array('controller' => 'install', 'action' => 'complete'));
