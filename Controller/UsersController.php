@@ -52,7 +52,7 @@ class UsersController extends BugCakeAppController {
                 $this->request->data['User']['role'] = "user";
                 if ($this->User->save($this->request->data)) {
                     $this->Session->setFlash(__('The user has been saved'));
-                    return $this->redirect(array('action' => 'index'));
+                    return $this->redirect(array('controller'=> 'issues', 'action' => 'index'));
                 }
                 $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
             } else {
@@ -73,7 +73,7 @@ class UsersController extends BugCakeAppController {
                 $this->Cookie->write('User.username', $this->Session->read('Auth.User.username'));
                 $this->Cookie->write('User.role', $this->Session->read('Auth.User.role'));
                 $this->Session->setFlash(__('Welcome '.$this->Session->read('Auth.User.username')), 'info');
-                $this->redirect(array('action' => 'login'));
+                $this->redirect(array('controller'=> 'issues', 'action' => 'login'));
             }
             $this->Session->setFlash(__('Invalid username or password, try again'), 'warning');
         }

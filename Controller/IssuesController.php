@@ -53,9 +53,11 @@ class IssuesController extends BugCakeAppController {
             $keywords = $this->request['data']['Issue']['search'];
             $options = array(
             'conditions' => array(
+            	'Issue.comment_id =' => '0',
                 'OR' => array(
                     'Issue.body LIKE' => '%'. $keywords . '%',
-                    'Issue.title LIKE' => '%'. $keywords . '%'
+                    'Issue.title LIKE' => '%'. $keywords . '%',
+                    'Issue.tags LIKE' => '%'. $keywords . '%'
                     )
                 )
             );
