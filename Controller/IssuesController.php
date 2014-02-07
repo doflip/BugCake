@@ -14,6 +14,10 @@ class IssuesController extends BugCakeAppController {
         $this->Cookie->key = 'qSI232qs*&sfytf65r6fc9-+!@#HKis~#^';
         $this->Cookie->httpOnly = false;
 
+        // if you want only the admins to be able to access the issues then uncomment the following line , 
+        // and comment ou the next if
+        // if ($this->Session->read('Auth.User.role') == 'admin' || $this->Cookie->read('User.role') == 'admin') {
+
         if ($this->Session->read('Auth.User.username') != null || $this->Cookie->read('User.username') != null) {
             $this->username = $this->Session->read('Auth.User.username');
             if ($this->username == null) {$this->username = $this->Cookie->read('User.username');}
