@@ -4,7 +4,7 @@ BugCake Plugin for CakePHP
 BugCake is an open source minimalistic bug/issue tracking plugin, developed using the CakePHP framework. Though it was developed as a CakePHP plugin, it can also be transformed and deployed with ease as a standalone bug/issue tracker.
 
 ### Pictures
-For more pictures take a look [here](https://github.com/lubbleup/BugCake/wiki/Pictures)
+For more pictures take a look [here](https://github.com/intelligems/BugCake/wiki/Pictures)
 
 ![Picture 1](https://dl.dropboxusercontent.com/u/162584646/bug1.png)
 
@@ -73,7 +73,6 @@ UNIQUE KEY `username` (`username`)
 ```
 
 
-In the `Controller/UsersController.php` file, there is a company-inside limitation for users' registration (by default, we require a LubbleUp corporal e-mail account), which is (by default) commented out. We recommend to uncomment these lines and fix them to suit your needs, especially if you do use the bug/issue tracking plugin in an enterprise environment.
+In the `Controller/UsersController.php` file, there is a company-inside limitation for users' registration (by default, we require a intelligems corporal e-mail account), which is (by default) commented out. We recommend to uncomment these lines and fix them to suit your needs, especially if you do use the bug/issue tracking plugin in an enterprise environment.
 
-Developed from LubbleUp in-house software dev team with love.
-Contact: talk2us@lubbleup.com
+Developed from intelligems in-house software dev team with love.
