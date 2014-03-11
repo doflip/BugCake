@@ -58,8 +58,8 @@
             <p>Made with  <i class="black heart icon"></i>by lubbleup </p>
         </h6> -->
         <div class="ui divided horizontal footer link list right aligned page grid">
-            <div class="item">Made with  <i class="black heart icon"></i>by <a href="http://lubbleup.com/">LubbleUp</a> </div>
-            <a class="item" href="https://github.com/lubbleup/BugCake">Github</a>
+            <div class="item">Made with  <i class="black heart icon"></i>by <a href="https://github.com/intelligems/">LubbleUp</a> </div>
+            <a class="item" href="https://github.com/intelligems/BugCake">Github</a>
         </div>
         
       <script>
