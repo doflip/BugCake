@@ -27,30 +27,36 @@ class IssuesController extends BugCakeAppController {
         }
     }
     
-    public function tags($id=null, $action=null, $data=null) {
+    public function tags_add($id=null, $data=null){
         if ($this->request->is('get')) {
            $this->redirect(array('action' => 'view', $id));
         }
         if ($this->Session->read('Auth.User.role') == 'admin' || $this->Cookie->read('User.role') == 'admin') {
-            
             $post = $this->Issue->findById($id);
-            if ($action == 'add') {
-                $post['Issue']['tags'] = $post['Issue']['tags'].','.$this->request['data']['Issue']['tag'];
-            }
-            if ($action == 'delete') {
-                if (strpos($post['Issue']['tags'], ','.$data)) {
-                    $data = ','.$data;
-                }
-                $post['Issue']['tags'] = str_replace($data, '', $post['Issue']['tags']);
-            }
+            $post['Issue']['tags'] = $post['Issue']['tags'].$this->request['data']['Issue']['tag'].', ';
             $this->Issue->create();
             $this->Issue->save($post);
-            //$this->Session->setFlash(__(var_dump($post)));
+
         }
-        $this->redirect(array('action' => 'view', $id));
+        $this->redirect(array('controller' => 'issues', 'action' => 'view', $id));
+
+
     }
-    
-    
+    public function tags_delete($id=null, $data=null){
+        if ($this->request->is('get')) {
+           $this->redirect(array('action' => 'view', $id));
+        }
+        if ($this->Session->read('Auth.User.role') == 'admin' || $this->Cookie->read('User.role') == 'admin') {
+            $post = $this->Issue->findById($id);
+            $post['Issue']['tags'] = str_replace($data.', ', '', $post['Issue']['tags']);
+            $this->Issue->create();
+            $this->Issue->save($post);
+        }
+        $this->redirect(array('controller' => 'issues', 'action' => 'view', $id));
+
+    }
+
+
     public function search() {
 
         if ($this->request->is('post')) {
@@ -109,7 +115,7 @@ class IssuesController extends BugCakeAppController {
         if ($this->request->is('post')) {
             $this->Issue->create();
             $this->Issue->set("author", $this->username);
-            $this->Issue->set("tags", 'open');
+            $this->Issue->set("tags", 'open, ');
             //var_dump($this->Issue);
             if ($this->Issue->save($this->request->data)) {
                 $this->Session->setFlash(__('Your post has been saved.'), 'info');

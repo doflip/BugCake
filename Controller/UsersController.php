@@ -73,7 +73,7 @@ class UsersController extends BugCakeAppController {
                 $this->Cookie->write('User.username', $this->Session->read('Auth.User.username'));
                 $this->Cookie->write('User.role', $this->Session->read('Auth.User.role'));
                 $this->Session->setFlash(__('Welcome '.$this->Session->read('Auth.User.username')), 'info');
-                $this->redirect(array('controller'=> 'issues', 'action' => 'login'));
+                $this->redirect(array('controller'=> 'issues', 'action' => 'index'));
             }
             $this->Session->setFlash(__('Invalid username or password, try again'), 'warning');
         }

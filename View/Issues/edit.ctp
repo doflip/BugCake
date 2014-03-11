@@ -1,6 +1,6 @@
 
 <?php echo $this->Form->create('Issue'); ?>
-<?php if ($post['Issue']['commentid'] == 0) { ?>
+<?php if ($post['Issue']['comment_id'] == 0) { ?>
 
 <div class="ui form">
   <div class="field">
@@ -13,6 +13,12 @@
 <div class="ui form">
   <div class="field">
     <?php echo $this->Form->input('body', array('label' => false, 'value'=>$post['Issue']['body'])); ?>
+  </div>
+</div>
+
+<div class="ui form">
+  <div class="field">
+    <?php echo $this->Form->input('tags', array('label' => false, 'value'=>$post['Issue']['tags'])); ?>
   </div>
 </div>
 

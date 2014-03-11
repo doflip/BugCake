@@ -7,28 +7,22 @@
 Tags: 
 <?php
 if (strlen($post['Issue']['tags']) > 0) {
-	if (strpos($post['Issue']['tags'], ',')) {
-		foreach(explode(',', $post['Issue']['tags']) as $tag) {
+		foreach(explode(', ', $post['Issue']['tags']) as $tag) {
+      if (strlen($tag) > 0) {
 
-		  echo '<div class="ui label">'.$tag;
-		  echo $this->Form->postlink('<i class="delete icon"></i>',
-		                             array('action' => 'tags', $post['Issue']['id'], 'delete', $tag),
-		                             array('escape'=>false));
-		  echo'</div>';
+  		  echo '<div class="ui label">'.$tag;
+  		  echo $this->Form->postlink('<i class="delete icon"></i>',
+  		                             array('action' => 'tags_delete', $post['Issue']['id'], $tag),
+  		                             array('escape'=>false));
+
+  		  echo'</div>';
 		}
-	} else {
-
-	  echo '<div class="ui label">'.$post['Issue']['tags'];
-	  echo $this->Form->postlink('<i class="delete icon"></i>',
-	                             array('action' => 'tags', $post['Issue']['id'], 'delete', $post['Issue']['tags']),
-	                             array('escape'=>false));
-	  echo'</div>';
-	}
+  }
 }
 ?>
 
 <div class="ui icon input 4">
-<?php echo $this->Form->create('Issue', array('url' => array('action' => 'tags', $post['Issue']['id'], 'add')));
+<?php echo $this->Form->create('Issue', array('url' => array('action' => 'tags_add', $post['Issue']['id'])));
 echo $this->Form->input('tag', array('label' => false,
                                         'placeholder' => 'Add tag',
                                         'div'=>false));
