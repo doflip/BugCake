@@ -7,13 +7,6 @@ class UsersController extends BugCakeAppController {
     public function beforeFilter() {
         parent::beforeFilter();
         $this->Auth->allow('add', 'login', 'index', 'logout');
-        $this->Cookie->name = 'baker_id';
-        $this->Cookie->time = 600;  // or '1 hour'
-        $this->Cookie->path = '/';
-        $this->Cookie->domain = 'bugcake.com';
-        $this->Cookie->secure = false;  // i.e. only sent if using secure HTTPS
-        $this->Cookie->key = 'qSI232qs*&sfytf65r6fc9-+!@#HKis~#^';
-        $this->Cookie->httpOnly = false;
 
         if ($this->Session->read('Auth.User.username') != null || $this->Cookie->read('User.username') != null) {
             $this->username = $this->Session->read('Auth.User.username');

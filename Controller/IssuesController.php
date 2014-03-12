@@ -6,13 +6,6 @@ class IssuesController extends BugCakeAppController {
     
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Cookie->name = 'baker_id';
-        $this->Cookie->time = 600;  // or '1 hour'
-        $this->Cookie->path = '/';
-        $this->Cookie->domain = 'bugcake.com';
-        $this->Cookie->secure = false;  // i.e. only sent if using secure HTTPS
-        $this->Cookie->key = 'qSI232qs*&sfytf65r6fc9-+!@#HKis~#^';
-        $this->Cookie->httpOnly = false;
 
         // if you want only the admins to be able to access the issues then uncomment the following line , 
         // and comment ou the next if

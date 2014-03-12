@@ -30,7 +30,7 @@
 
         <?php echo $this->Html->link('<i class="warning icon"></i> Create an issue', array('plugin' => 'bug_cake', 'controller'=>'issues', 'action' => 'add'), array('class' => 'active green item', 'escape' => false)); ?>
         <?php echo $this->Html->link('<i class="bug icon"></i> All', array('plugin' => 'bug_cake', 'controller'=>'issues', 'action' => 'index'), array('class' => 'active purple item', 'escape' => false)); ?>
-        <?php echo $this->Html->link('<i class="empty checkbox icon"></i> Open', array('plugin' => 'bug_cake', 'controller'=>'issues', 'action' => 'index', 'open'), array('class' => 'active red item', 'escape' => false)); ?>
+        <?php echo $this->Html->link('<i class="empty checkbox icon"></i> Open <div class="ui teal label">'.$OPEN_ISSUES.'</div>', array('plugin' => 'bug_cake', 'controller'=>'issues', 'action' => 'index', 'open'), array('class' => 'active red item', 'escape' => false)); ?>
         <?php echo $this->Html->link('<i class="checked checkbox icon"></i> Close', array('plugin' => 'bug_cake', 'controller'=>'issues', 'action' => 'index', 'close'), array('class' => 'active blue item', 'escape' => false)); ?>
         <?php echo $this->Html->link('<i class="search icon"></i> Search', array('plugin' => 'bug_cake', 'controller'=>'issues', 'action' => 'search'), array('class' => 'active teal item', 'escape' => false)); ?>
 
