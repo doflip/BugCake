@@ -1,7 +1,6 @@
 <?php
 class IssuesController extends BugCakeAppController {
     public $helpers = array('Html', 'Form', 'Text');
-    public $uses = array('DefaultModel', 'Issue');
     public $components = array('Paginator', 'Session', 'Cookie', 'RequestHandler');
     
     public function beforeFilter() {

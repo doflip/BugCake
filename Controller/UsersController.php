@@ -20,6 +20,7 @@ class UsersController extends BugCakeAppController {
     }
     
     public function index() {
+        
     }
 
 
