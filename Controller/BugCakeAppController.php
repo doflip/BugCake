@@ -23,6 +23,16 @@ class BugCakeAppController extends AppController {
 		    )
 		);
 		$this->set('OPEN_ISSUES', $this->Issue->find('count',$options));
+		if ($this->Session->read('Auth.User.username') != null || $this->Cookie->read('User.username') != null) {
+			$this->username = $this->Session->read('Auth.User.username');
+			if ($this->username == null) {$this->username = $this->Cookie->read('User.username');}
+			$this->set('user', $this->username);
+		} else {
+			if (!($this->params['controller'] == 'users')){
+				$this->redirect(array('controller' => 'users', 'action' => 'login'));
+			}
+			
+		}
 	}
 
 	public function _loadsetting($name) {

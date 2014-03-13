@@ -7,16 +7,10 @@ class IssuesController extends BugCakeAppController {
         parent::beforeFilter();
 
         // if you want only the admins to be able to access the issues then uncomment the following line , 
-        // and comment ou the next if
+        // and comment out the next if
         // if ($this->Session->read('Auth.User.role') == 'admin' || $this->Cookie->read('User.role') == 'admin') {
 
-        if ($this->Session->read('Auth.User.username') != null || $this->Cookie->read('User.username') != null) {
-            $this->username = $this->Session->read('Auth.User.username');
-            if ($this->username == null) {$this->username = $this->Cookie->read('User.username');}
-            $this->set('user', $this->username);
-        } else {
-            $this->redirect(array('controller' => 'users', 'action' => 'login'));
-        }
+        
     }
     
     public function tags_add($id=null, $data=null){
