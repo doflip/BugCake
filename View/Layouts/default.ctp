@@ -39,12 +39,17 @@
               <?php echo strtoupper($user); ?><i class="dropdown icon"></i>
               <div class="menu">
                 <?php 
+                if ($ROLE == "admin") {
+                  echo $this->Html->link('<i class="dashboard icon"></i> Admin Interface', array('plugin' => 'bug_cake', 'controller'=>'admin', 'action' => 'index'), array('class' => 'item', 'escape' => false)); 
+                }
                 if ($user == 'User Actions') { 
-                  echo $this->Html->link('<i class="add icon"></i> Register', array('plugin' => 'bug_cake', 'controller'=>'users', 'action' => 'add'), array('class' => 'item', 'escape' => false)); 
+                  echo $this->Html->link('<i class="add icon"></i> Register', array('plugin' => 'bug_cake', 'controller'=>'users', 'action' => 'add'), array('class' => 'item', 'escape' => false));
+                  echo $this->Html->link('<i class="unlock icon"></i> Login', array('plugin' => 'bug_cake', 'controller'=>'users', 'action' => 'login'), array('class' => 'item', 'escape' => false)); 
+
                 } else {
                   echo $this->Html->link('<i class="off icon"></i> Logout', array('plugin' => 'bug_cake', 'controller'=>'users', 'action' => 'logout'), array('class' => 'item', 'escape' => false)); 
-                } ?>
-
+                }
+                ?>
               </div>
             </div>  
         </div>

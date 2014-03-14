@@ -1,7 +1,13 @@
 <?php
 class AdminController extends BugCakeAppController {
-	public $components = array('Session', 'Cookie');
+	public $helpers = array('Html', 'Form', 'Text');
+	public $components = array('Session', 'Cookie', 'Paginator');
 	public $uses = array('Setting', 'User');
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->layout = "admin";
+		
+	}
 	
 	public function index() {
 		
@@ -23,7 +29,11 @@ class AdminController extends BugCakeAppController {
 							  );
 			
 			}
-			$this->redirect('cookies');
+			
+			// Save secure and httpOnly 
+			
+			$this->redirect(array('action' => 'cookies'));
+			
 			
 		}
 	}
@@ -32,7 +42,14 @@ class AdminController extends BugCakeAppController {
 		
 	}
 	
-	public function categories() {
+	public function users() {
+		$this->Paginator->settings = array('limit' => 6, 'order' => array('User.id' => 'desc'));
+		$users = $this->Paginator->paginate('User');
+		$this->set('users', $users);
+		
+	}
+	
+	public function terms() {
 		
 	}
 

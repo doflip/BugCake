@@ -17,7 +17,7 @@ class IssuesController extends BugCakeAppController {
         if ($this->request->is('get')) {
            $this->redirect(array('action' => 'view', $id));
         }
-        if ($this->Session->read('Auth.User.role') == 'admin' || $this->Cookie->read('User.role') == 'admin') {
+        if ($this->role == 'admin') {
             $post = $this->Issue->findById($id);
             $post['Issue']['tags'] = $post['Issue']['tags'].$this->request['data']['Issue']['tag'].', ';
             $this->Issue->create();
