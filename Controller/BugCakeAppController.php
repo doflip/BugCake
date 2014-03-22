@@ -2,7 +2,7 @@
 
 class BugCakeAppController extends AppController {
 
-	public $components = array('Cookie');
+	public $components = array('Cookie', 'Session');
 	public function beforeFilter() {
 		parent::beforeFilter();
 		
