@@ -7,11 +7,9 @@ class InstallController extends BugCakeAppController {
     public function beforeFilter() {
         parent::beforeFilter();
         $this->Auth->allow('step2', 'complete', 'index');
-        $this->layout = "install";
-        $this->sqlcode = APP.'Plugin'.DS.'BugCake'.DS.'SQLTABLES.sql';
-        //if (!file_exists($this->sqlcode)) {
-        //    $this->redirect(array('controller' => 'issues', 'action' => 'index'));
-        //}
+        if (!file_exists($this->sqlcode)) {
+            $this->redirect(array('controller' => 'users', 'action' => 'login'));
+        }
     }
     
     public function index() {
