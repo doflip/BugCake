@@ -47,7 +47,8 @@ class BugCakeAppController extends AppController {
 	}
 
 	public function _loadsetting($name) {
-		$data = $this->Setting->find('first', array('conditions' => array('Setting.name' => $name)))['Setting']['value'];
+		$data = $this->Setting->find('first', array('conditions' => array('Setting.name' => $name)));
+		$data = $data['Setting']['value'];
 		if ($data == "false") {  
 			return false;
 		} elseif ($data == "true") {
