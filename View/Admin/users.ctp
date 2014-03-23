@@ -29,7 +29,15 @@
       <tbody>
             <?php foreach ($users as $user): ?>
             <tr>
-            <td><a href="<?php echo $this->Html->url(array('action'=> 'users', $user['User']['id']));  ?>"><div class="small circular ui button">View</div></a>&nbsp<a href="<?php if($role != "admin") {echo $this->Html->url(array('action'=> 'admin_add', $user['User']['id']));}  ?>"><div class="small circular ui button">Make admin</div></a></td>
+            <td><a href="<?php echo $this->Html->url(array('action'=> 'users', $user['User']['id']));  ?>"><div class="small circular ui button">View</div></a>&nbsp
+                        <?php
+                          if($role != "admin") {
+                          echo "<a href=".$this->Html->url(array('action'=> 'admin_add', $user['User']['id']))."><div class="small circular ui button">Make admin</div></a>'";
+                            }
+                        ?>
+            </td>
+
+
             <td><?php echo h($user['User']['username']); ?></td>
             <td><?php echo h($user['User']['email']); ?></td>
             <td><?php echo h($user['User']['role']); ?></td>
