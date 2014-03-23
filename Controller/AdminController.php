@@ -53,17 +53,22 @@ class AdminController extends BugCakeAppController {
 		
 	}
 
-	private function admin_add($id) {
-		$this->loadModel('User');
-		$this->User->id = $id;
-		$result = $this->User->saveField('role','admin');
-		if($result) {
-			$this->Session->setFlash('User with id: %s added is now an admin.', h($id, 'info'));
-			$this->redirect(array('action' => 'users'));
+	public function admin_add($id=null) {
+		if($this->User->role == "admin") {
+			$this->loadModel('User');
+			$this->User->id = $id;
+			$result = $this->User->saveField('role','admin');
+			if($result) {
+				$this->Session->setFlash('User with id: %s added is now an admin.', h($id, 'info'));
+				$this->redirect(array('action' => 'users'));
+			} else {
+				$this->Session->setFlash('Soemthing went wrong! Try again later!');
+				$this->redirect(array('action' => 'users'));
+			}
 		} else {
-			$this->Session->setFlash('Soemthing went wrong! Try again later!');
-			$this->redirect(array('action' => 'users'));
+			$this->Session->setFlash('You are not allowed to do that action!', 'warning');
 		}
+
 	}
 
 }
