@@ -33,7 +33,7 @@
                         <?php
                           if($role != "admin") {
                             $url = $this->Html->url(array('action'=> 'admin_add', $user['User']['id']));
-                          echo "<a href=".$url."><div class="small circular ui button">Make admin</div></a>'";
+                          echo "<a href=".$url."><div class="small circular ui button">Make admin</div></a>";
                             }
                         ?>
             </td>
