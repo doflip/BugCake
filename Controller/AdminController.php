@@ -54,7 +54,7 @@ class AdminController extends BugCakeAppController {
 	}
 
 	public function admin_add($id=null) {
-		if($this->Auth->user->role == "admin") {
+		//if($this->Auth->user->role == "admin") {
 			$this->loadModel('User');
 			$this->User->id = $id;
 			$result = $this->User->saveField('role','admin');
@@ -65,9 +65,9 @@ class AdminController extends BugCakeAppController {
 				$this->Session->setFlash('Soemthing went wrong! Try again later!');
 				$this->redirect(array('action' => 'users'));
 			}
-		} else {
+		/*} else {
 			$this->Session->setFlash('You are not allowed to do that action!', 'warning');
-		}
+		}*/
 
 	}
 
