@@ -54,7 +54,7 @@ class AdminController extends BugCakeAppController {
 	}
 
 	public function admin_add($id=null) {
-		if($this->Auth->user->role == "admin") {
+		if($this->role == "admin") {
 			$this->loadModel('User');
 			$this->User->id = $id;
 			$result = $this->User->saveField('role','admin');
