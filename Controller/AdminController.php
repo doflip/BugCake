@@ -45,7 +45,7 @@ class AdminController extends BugCakeAppController {
 	public function users() {
 		//Set role variable for View usage
 		$this->set('role', $this->role);
-		
+
 		$this->Paginator->settings = array('limit' => 6, 'order' => array('User.id' => 'desc'));
 		$users = $this->Paginator->paginate('User');
 		$this->set('users', $users);
@@ -56,22 +56,39 @@ class AdminController extends BugCakeAppController {
 		
 	}
 
-	public function admin_add($id=null) {
+	public function admin_add($id = null) {
 		if($this->role == "admin") {
 			$this->loadModel('User');
 			$this->User->id = $id;
 			$result = $this->User->saveField('role','admin');
 			if($result) {
-				$this->Session->setFlash('User with id: %s added is now an admin.', h($id, 'info'));
+				$this->Session->setFlash('User with id: %s added is now an admin.', h($id), 'info');
 				$this->redirect(array('action' => 'users'));
 			} else {
-				$this->Session->setFlash('Soemthing went wrong! Try again later!');
+				$this->Session->setFlash('Something went wrong! Try again later!');
 				$this->redirect(array('action' => 'users'));
 			}
 		} else {
 			$this->Session->setFlash('You are not allowed to do that action!', 'warning');
 		}
 
+	}
+
+	public function admin_remove($id = null) {
+		if($this->role == "admin") {
+			$this->loadModel('User');
+			$this->User->id = $id;
+			$result = $this->User->saveField('role','user');
+			if($result) {
+				$this->Session->setFlash('User with id: %s is no longer admin.', h($id), 'info');
+				$this->redirect(array('action' => 'users'));
+			} else {
+				$this->Session->setFlash('Something went wrong. Try again later!');
+				$this->redirect(array('action' => 'users'));
+			}
+		} else {
+			$this->Session->setFlash('You are not allowed to do that action!', 'warning');
+		}
 	}
 
 }

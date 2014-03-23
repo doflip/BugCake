@@ -32,8 +32,11 @@
             <td><a href="<?php echo $this->Html->url(array('action'=> 'users', $user['User']['id']));  ?>"><div class="small circular ui button">View</div></a>&nbsp
                         <?php
                           if($role != "admin") {
-                            $url = $this->Html->url(array('action'=> 'admin_add', $user['User']['id']));
-                          echo "<a href='". $url ."'><div class='small circular ui button'>Make admin</div></a>";
+                              $url = $this->Html->url(array('action'=> 'admin_add', $user['User']['id']));
+                              echo "<a href='". $url ."'><div class='small circular ui button'>Make admin</div></a>";
+                            } else if($role == "admin") {
+                              $url = $this->Html->url(array('action'=> 'admin_remove', $user['User']['id']));
+                              echo "<a href='". $url ."'><div class='small circular ui button'>Remove admin</div></a>";
                             }
                         ?>
             </td>
