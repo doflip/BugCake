@@ -43,6 +43,9 @@ class AdminController extends BugCakeAppController {
 	}
 	
 	public function users() {
+		//Set role variable for View usage
+		$this->set('role', $this->role);
+		
 		$this->Paginator->settings = array('limit' => 6, 'order' => array('User.id' => 'desc'));
 		$users = $this->Paginator->paginate('User');
 		$this->set('users', $users);
