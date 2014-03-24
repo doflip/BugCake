@@ -41,6 +41,8 @@ class InstallController extends BugCakeAppController {
         if ($this->request->is('post')) {
             if (unlink($this->sqlcode)) {
                 $this->Session->setFlash(__('Installation Completed !!! Thank you for choosing us.'), 'info');
+            } else {
+                $this->Session->setFlash(__('Please delete manually the file located at: '.$this->sqlcode), 'warning');
             }
         }
         

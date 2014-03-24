@@ -8,15 +8,6 @@ class UsersController extends BugCakeAppController {
         parent::beforeFilter();
         $this->Auth->allow('add', 'login', 'index', 'logout');
 
-        if ($this->Session->read('Auth.User.username') != null || $this->Cookie->read('User.username') != null) {
-            $this->username = $this->Session->read('Auth.User.username');
-            if ($this->username == null) {$this->username = $this->Cookie->read('User.username');}
-
-            $this->set('user', $this->username);
-            
-        } else {
-            $this->set('user', 'User Actions');
-        }
     }
     
     public function index() {
@@ -45,15 +36,15 @@ class UsersController extends BugCakeAppController {
                 $this->User->create();
                 $this->request->data['User']['role'] = "user";
                 if ($this->User->save($this->request->data)) {
-                    $this->Session->setFlash(__('The user has been saved'));
+                    $this->Session->setFlash(__('The user has been saved'), 'info');
                     return $this->redirect(array('controller'=> 'issues', 'action' => 'index'));
                 }
-                $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+                $this->Session->setFlash(__('The user could not be saved. Please, try again.'), 'warning');
             } else {
                 if($emailCheck == 0) {
-                    $this->Session->setFlash(__('You are not allowed to access this webplace'));
+                    $this->Session->setFlash(__('You are not allowed to access this webplace'), 'warning');
                 } else {
-                    $this->Session->setFlash(__('This username already exists!'));
+                    $this->Session->setFlash(__('This username already exists!'), 'warning');
                 }
                 
             }
