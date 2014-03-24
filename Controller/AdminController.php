@@ -65,7 +65,7 @@ class AdminController extends BugCakeAppController {
 				$this->Session->setFlash('User with id: %s added is now an admin.', h($id), 'info');
 				$this->redirect(array('action' => 'users'));
 			} else {
-				$this->Session->setFlash('Something went wrong! Try again later!');
+				$this->Session->setFlash('Something went wrong! Try again later!', 'warning');
 				$this->redirect(array('action' => 'users'));
 			}
 		} else {
@@ -83,7 +83,7 @@ class AdminController extends BugCakeAppController {
 				$this->Session->setFlash('User with id: %s is no longer admin.', h($id), 'info');
 				$this->redirect(array('action' => 'users'));
 			} else {
-				$this->Session->setFlash('Something went wrong. Try again later!');
+				$this->Session->setFlash('Something went wrong. Try again later!', 'warning');
 				$this->redirect(array('action' => 'users'));
 			}
 		} else {

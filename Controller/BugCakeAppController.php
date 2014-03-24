@@ -41,8 +41,10 @@ class BugCakeAppController extends AppController {
 				
 			}
 		} else {
+			
 			$this->layout = "install";
 			$this->sqlcode = APP.'Plugin'.DS.'BugCake'.DS.'SQLTABLES.sql';
+			
 		}
 	}
 
