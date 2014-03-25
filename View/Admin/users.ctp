@@ -31,10 +31,10 @@
             <tr>
             <td>
               <?php
-                if ($ROLE != "admin") {
+                if ($user['User']['role'] != "admin") {
                     $url = $this->Html->url(array('action'=> 'admin_add', $user['User']['id']));
                     echo "<a href='". $url ."'><div class='small circular ui button'>Make admin</div></a>";
-                } elseif ($ROLE == "admin") {
+                } elseif ($user['User']['role'] == "admin") {
                     $url = $this->Html->url(array('action'=> 'admin_remove', $user['User']['id']));
                     echo "<a href='". $url ."'><div class='small circular ui button'>Remove admin</div></a>";
                 }

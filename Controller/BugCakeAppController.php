@@ -34,10 +34,11 @@ class BugCakeAppController extends AppController {
 				$this->set('user', $this->username);
 				$this->set('ROLE', $this->role);
 			} else {
+				$this->set('user', 'User Actions');
+				$this->set('ROLE', null);
 				if (!($this->params['controller'] == 'users')){
 					$this->redirect(array('controller' => 'users', 'action' => 'login'));
 				}
-				$this->set('ROLE', null);
 				
 			}
 		} else {
