@@ -45,7 +45,7 @@
         
           <div class="ui selection dropdown">
             <div class="text"><?php echo ($cookie_set->secure) ? 'True' : 'False'; ?></div>
-            <input name="secure" type="hidden" value="<?php echo ($cookie_set->secure) ? 'True' : 'False'; ?>">
+            <input name="secure" type="hidden" value="<?php echo ($cookie_set->secure) ? 'true' : 'false'; ?>">
             
             <i class="dropdown icon"></i>
             <div class="menu">
@@ -60,7 +60,7 @@
         
           <div class="ui selection dropdown">
             <div class="text"><?php echo ($cookie_set->httpOnly) ? 'True' : 'False'; ?></div>
-            <input name="httpOnly" type="hidden" value="<?php echo ($cookie_set->httpOnly) ? 'True' : 'False'; ?>">
+            <input name="httpOnly" type="hidden" value="<?php echo ($cookie_set->httpOnly) ? 'true' : 'false'; ?>">
             
             <i class="dropdown icon"></i>
             <div class="menu">
