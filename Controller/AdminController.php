@@ -15,10 +15,10 @@ class AdminController extends BugCakeAppController {
 	}
     
 	public function cookies(){
-		
+		//debug($this->request->data);
 		$this->set('cookie_set', $this->Cookie);
 		if ($this->request->is('post')) {
-			//debug($this->request->data);
+			
 			foreach (array_keys($this->request->data['Setting']) as $setting) {
 				$this->Setting->clear();
 				$this->Setting->updateAll(
@@ -30,7 +30,20 @@ class AdminController extends BugCakeAppController {
 			
 			}
 			
-			// Save secure and httpOnly 
+			// Save secure and httpOnly
+			
+			$this->Setting->clear();
+			$this->Setting->updateAll(
+				array('value' => "'".$this->request->data['httpOnly']."'"),
+				array('Setting.name =' => 'httpOnly')
+				);
+		
+		
+			$this->Setting->clear();
+			$this->Setting->updateAll(
+				array('value' => "'".$this->request->data['secure']."'"),
+				array('Setting.name =' => 'secure')
+				);
 			
 			$this->redirect(array('action' => 'cookies'));
 			

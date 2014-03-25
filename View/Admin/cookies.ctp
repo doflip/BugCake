@@ -42,34 +42,42 @@
       <div class="ui two column page grid">
         <div class="column">
         <h4>Secure</h4>
-          <div class="ui dropdown selection">
-            <input name="secure" type="hidden">
-            <div class="default text"><?php echo $cookie_set->secure; ?></div>
+        
+          <div class="ui selection dropdown">
+            <div class="text"><?php echo ($cookie_set->secure) ? 'True' : 'False'; ?></div>
+            <input name="secure" type="hidden" value="<?php echo ($cookie_set->secure) ? 'True' : 'False'; ?>">
+            
             <i class="dropdown icon"></i>
             <div class="menu">
               <div class="item" data-value="true">True</div>
               <div class="item" data-value="false">False</div>
             </div>
           </div>
+          
         </div>
         <div class="column">
         <h4>HttpOnly</h4>
-          <div class="ui dropdown selection">
-            <input name="httpOnly" type="hidden">
-            <div class="default text"><?php echo $cookie_set->httpOnly; ?></div>
+        
+          <div class="ui selection dropdown">
+            <div class="text"><?php echo ($cookie_set->httpOnly) ? 'True' : 'False'; ?></div>
+            <input name="httpOnly" type="hidden" value="<?php echo ($cookie_set->httpOnly) ? 'True' : 'False'; ?>">
+            
             <i class="dropdown icon"></i>
             <div class="menu">
               <div class="item" data-value="true">True</div>
               <div class="item" data-value="false">False</div>
             </div>
           </div>
+          
         </div>
       </div>
     <br>
+    
     <div class="ui field">
         <input type="submit" value="Save Issue" class="ui green submit button" />
     </div>
     <?php echo $this->Form->end(); ?>
     </div>
   </div>
+  
   

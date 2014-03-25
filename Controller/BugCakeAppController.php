@@ -13,9 +13,9 @@ class BugCakeAppController extends AppController {
 			$this->Cookie->time = intval($this->_loadsetting('time'));
 			$this->Cookie->path = $this->_loadsetting('path');
 			$this->Cookie->domain = $this->_loadsetting('domain');
-			$this->Cookie->secure = $this->_loadsetting('secure');
 			$this->Cookie->key = $this->_loadsetting('key');
-			$this->Cookie->httpOnly = $this->_loadsetting('httpOnly');
+			$this->Cookie->secure = filter_var($this->_loadsetting('secure'), FILTER_VALIDATE_BOOLEAN);
+			$this->Cookie->httpOnly = filter_var($this->_loadsetting('httpOnly'), FILTER_VALIDATE_BOOLEAN);
 	
 			$options = array(
 			'conditions' => array(
@@ -51,13 +51,16 @@ class BugCakeAppController extends AppController {
 	public function _loadsetting($name) {
 		$data = $this->Setting->find('first', array('conditions' => array('Setting.name' => $name)));
 		$data = $data['Setting']['value'];
-		if ($data == "false") {  
+		return $data;
+		/*
+		if ($data == "false") {
 			return false;
 		} elseif ($data == "true") {
 			return true;
 		} else {
 			return $data;
 		}
+		*/
 
 	}
 }
