@@ -33,6 +33,11 @@ class BugCakeAppController extends AppController {
 				if ($this->role == null) {$this->username = $this->Cookie->read('User.role');}
 				$this->set('user', $this->username);
 				$this->set('ROLE', $this->role);
+				if ($this->_loadsetting('admin') == 'true' && $this->role != 'admin') {
+					if (!($this->params['controller'] == 'users')){
+						$this->redirect(array('controller' => 'users', 'action' => 'index'));
+				        }
+				}
 			} else {
 				$this->set('user', 'User Actions');
 				$this->set('ROLE', null);

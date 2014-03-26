@@ -74,7 +74,7 @@
     <br>
     
     <div class="ui field">
-        <input type="submit" value="Save Issue" class="ui green submit button" />
+        <input type="submit" value="Update Settings" class="ui green submit button" />
     </div>
     <?php echo $this->Form->end(); ?>
     </div>
