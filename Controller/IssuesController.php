@@ -130,7 +130,7 @@ class IssuesController extends BugCakeAppController {
             		$this->Issue->id = $id;
                 if ($this->Issue->save($this->request->data)) {
                     $this->Session->setFlash(__('Your post has been updated.'), 'info');
-                    $this->redirect(array('action' => 'index'));
+                    $this->redirect(array('action' => 'view', $id));     
                 }
                 $this->Session->setFlash(__('Unable to update your post.'), 'warning');
             } else {

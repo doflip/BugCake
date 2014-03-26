@@ -10,7 +10,8 @@ if (strlen($post['Issue']['tags']) > 0) {
 		foreach(explode(', ', $post['Issue']['tags']) as $tag) {
       if (strlen($tag) > 0) {
 
-  		  echo '<div class="ui label">'.$tag;
+  		  echo '<div class="ui label">';
+        echo $this->Html->link($tag, array('controller' => 'issues', 'action' => 'index', $tag));
   		  echo $this->Form->postlink('<i class="delete icon"></i>',
   		                             array('action' => 'tags_delete', $post['Issue']['id'], $tag),
   		                             array('escape'=>false));
