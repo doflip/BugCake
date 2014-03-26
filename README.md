@@ -86,7 +86,8 @@ INSERT INTO `settings` (`id`, `name`, `value`) VALUES
 (6, 'secure', 'false'),
 (7, 'domain', 'bugcake.com'),
 (8, 'httpOnly', 'false'),
-(9, 'key', 'qSI232qs*&sfytf65r6fc9-+!@#HKis~#^');
+(9, 'key', 'qSI232qs*&sfytf65r6fc9-+!@#HKis~#^'),
+(10, 'admin', 'true');
 ```
 
 
