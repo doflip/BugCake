@@ -126,12 +126,17 @@ class IssuesController extends BugCakeAppController {
                 $this->redirect(array('action' => 'index'));
             }
             if ($this->request->is('post') || $this->request->is('put')) {
-                $this->Issue->id = $id;
+            	if($this->Issue->validates()) {
+            		$this->Issue->id = $id;
                 if ($this->Issue->save($this->request->data)) {
                     $this->Session->setFlash(__('Your post has been updated.'), 'info');
                     $this->redirect(array('action' => 'index'));
                 }
                 $this->Session->setFlash(__('Unable to update your post.'), 'warning');
+            } else {
+            	$this->Session->setFlash(__('Issue cannot be validated'), 'warning');
+            }
+                
             }
             if (!$this->request->data) {
                 $this->request->data = $post;
