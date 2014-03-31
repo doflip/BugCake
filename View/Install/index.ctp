@@ -1,7 +1,7 @@
 
 
 <div class="ui segment"><div class="ui top attached label">SQL</div><pre>
-<?php echo file_get_contents($sqlcode); ?>
+<?php echo $sqlcode; ?>
 </pre></div>
 
 <?php echo $this->Form->create('User', array('url' => array('controller' => 'install', 'action' => 'index'))); ?>

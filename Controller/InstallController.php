@@ -13,6 +13,11 @@ class InstallController extends BugCakeAppController {
     }
     
     public function index() {
+    	$this->sqlcode = file_get_contents($this->sqlcode);
+    	$length = rand(30, 40);
+		$key = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$^&*+-~"), 0, $length);
+		echo strlen('qSI232qs*&sfytf65r6fc9-+!@#HKis~#^');
+		$this->sqlcode = str_replace('qSI232qs*&sfytf65r6fc9-+!@#HKis~#^', $key, $this->sqlcode);
         $this->set('sqlcode', $this->sqlcode);
         
         if ($this->request->is('post')) {
@@ -22,6 +27,8 @@ class InstallController extends BugCakeAppController {
         }
     }
     
+
+
     public function step2() {
         if ($this->request->is('post')) {
             $this->loadModel('User');
