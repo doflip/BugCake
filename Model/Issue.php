@@ -8,10 +8,6 @@ class Issue extends BugCakeAppModel {
         'body' => array(
             'rule' => 'notEmpty',
             'message' => 'Please provide more details into the body of your issue.'
-        ),
-        'tags' => array(
-        	'rule' => '/(([a-z0-9]){0,}\,\s){0,}/',
-        	'message' => 'Tags should be separated with commas and a blank space.'
         )
     );
 }
