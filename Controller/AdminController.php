@@ -54,7 +54,7 @@ class AdminController extends BugCakeAppController {
 	public function access() {
 		$this->set('adminonly', $this->_loadsetting('admin'));
 		if ($this->request->is('post')) {
-			debug($this->request->data);
+			//debug($this->request->data);
 			if (@$this->request->data['admin'] == 'on') {
 				$this->Setting->clear();
 				$this->Setting->updateAll(

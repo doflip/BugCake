@@ -30,7 +30,7 @@
             <tr>
             <td><a href="<?php echo $this->Html->url(array('action'=> 'view', $post['Issue']['id']));  ?>"><div class="small circular ui button">View</div></a></td>
             <td><?php echo h($post['Issue']['title']); ?></td>
-            <td><?php echo h(substr($post['Issue']['body'], 0, 40))."..."; ?></td>
+            <td><?php echo h(mb_substr($post['Issue']['body'], 0, 40, 'UTF-8'))."..."; ?></td>
             <td><?php echo $post['Issue']['created']; ?></td>
 
             </tr>

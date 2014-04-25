@@ -46,15 +46,15 @@ if ($post['Issue']['author'] == $this->Session->read('Auth.User.username')) {
 <?php foreach ($comments as $comment): ?>
 <div class="ui raised segment">
 <div class="ui ribbon label">
-  <i class="code icon"></i> <?php echo h($comment['Issue']['author']); ?>
+  <i class="code icon"></i> <?php echo h($comment['author']); ?>
 </div>
-<?php if ($comment['Issue']['author'] == $this->Session->read('Auth.User.username')) {
+<?php if ($comment['author'] == $this->Session->read('Auth.User.username')) {
 
-echo $this->Html->link("EDIT", array('action' => 'edit', $comment['Issue']['id']), array('class'=>'ui teal label'));
-echo $this->Form->postLink("DELETE", array('action' => 'delete', $comment['Issue']['id']),
+echo $this->Html->link("EDIT", array('action' => 'edit', $post['Issue']['id'], $comment['id']), array('class'=>'ui teal label'));
+echo $this->Form->postLink("DELETE", array('action' => 'delete', $post['Issue']['id'], $comment['id']),
                        array('confirm' => 'Are you sure?','class'=>'ui red label'));
 } ?>
-<p><?php echo h($comment['Issue']['body']); ?></p>
+<p><?php echo h($comment['body']); ?></p>
 </div>
 
 <?php endforeach; ?>
@@ -77,7 +77,7 @@ echo $this->Form->postLink("DELETE", array('action' => 'delete', $comment['Issue
 </div>
 
 <h4>Post a Comment</h4>
-<?php echo $this->Form->create('Issue', array('url' => array('action'=> 'comment', $post['Issue']['id']), 'novalidate' => true)); ?>
+<?php echo $this->Form->create('Comment', array('url' => array('controller' => 'issues', 'action'=> 'comment', $post['Issue']['id']), 'novalidate' => true)); ?>
 
 <div class="ui form">
   <div class="field">
@@ -86,7 +86,7 @@ echo $this->Form->postLink("DELETE", array('action' => 'delete', $comment['Issue
 </div>
 
 <div class="ui field">
-    <input type="submit" value="Save Issue" class="ui green submit button" />
+    <input type="submit" value="Add Comment" class="ui green submit button" />
 </div>
 <?php echo $this->Form->end(); ?>
 <script>$('.ui.selection.dropdown').dropdown();</script>
