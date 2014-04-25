@@ -68,6 +68,7 @@ class AdminController extends BugCakeAppController {
 					array('Setting.name =' => 'admin')
 					);
 			}
+			$this->redirect(array('action' => 'access'));
 		}
 	}
 	

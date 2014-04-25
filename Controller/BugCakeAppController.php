@@ -30,7 +30,7 @@ class BugCakeAppController extends AppController {
 				$this->username = $this->Session->read('Auth.User.username');
 				$this->role = $this->Session->read('Auth.User.role');
 				if ($this->username == null) {$this->username = $this->Cookie->read('User.username');}
-				if ($this->role == null) {$this->username = $this->Cookie->read('User.role');}
+				if ($this->role == null) {$this->role = $this->Cookie->read('User.role');}
 				$this->set('user', $this->username);
 				$this->set('ROLE', $this->role);
 				if ($this->_loadsetting('admin') == 'true' && $this->role != 'admin') {
